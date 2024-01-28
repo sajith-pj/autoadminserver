@@ -1,5 +1,9 @@
 var express = require("express");
-const { signInController, signUpController } = require("../../controllers/auth");
+const {
+  signInController,
+  signUpController,
+  signUpWithGoogleController,
+} = require("../../controllers/auth");
 const { body } = require("express-validator");
 var router = express.Router();
 
@@ -39,5 +43,13 @@ router.post(
     .custom((value, { req }) => value === req.body.password),
   signUpController
 );
+
+router.post(
+  "/google",
+  body("googletoken").notEmpty().withMessage("Google token is required"),
+  body("tokentype").notEmpty().withMessage("Token type is required"),
+  signUpWithGoogleController
+);
+
 
 module.exports = router;
