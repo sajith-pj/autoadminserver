@@ -62,7 +62,6 @@ const signUpController = async (req, res) => {
     });
 };
 
-const signInWithGoogleController = (req, res) => {};
 
 const signUpWithGoogleController = async (req, res) => {
   const { googletoken, tokentype } = req.body;
