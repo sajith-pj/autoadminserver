@@ -23,7 +23,7 @@ const createNewPanel = async (req, res) => {
 
 const getPanelList = async (req, res) => {
   try {
-    const panels = await Panel.find();
+    const panels = await Panel.find({ createdBy: new ObjectId(req.user._id) });
     return res
       .status(200)
       .json({ data: panels, message: "Panels fetched successfully" });

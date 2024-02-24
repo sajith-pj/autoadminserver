@@ -112,7 +112,10 @@ const createNewPage = async (req, res) => {
 const getAllPages = async (req, res) => {
   const { panelId } = req.params;
   try {
-    const allPages = await Page.find({ panelID: new ObjectId(panelId) });
+    const allPages = await Page.find({
+      panelID: new ObjectId(panelId),
+      createdBy: new ObjectId(req.user._id),
+    });
     return res
       .status(200)
       .json({ message: "Pages listed successfully", data: allPages });
